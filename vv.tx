@@ -1,0 +1,73 @@
+Thanks.
+
+
+
+Now if I want to add another section to my system (an Accounting Section)
+ which should be very very comprehensive and cover every single aspect of 
+ my business such as expenses, revenue, invoices, clients debts, client balance, 
+ profit and loss, employee salaries (which should also include deductions and bonus 
+ along with everything related to them), and every other thing you think is professional 
+ to have for a company in the accounting section.
+
+
+
+what do you think? how can we start??
+
+please tell me your thoughts.
+
+1. Royal Can codes are different (eg, R1642).
+
+2. Karwanchi codes are different (eg K333)
+
+3. Zain Group codes are different (eg Z25)
+
+4. Normal Clients does not use codes, but still they have their own invoice template and order form.
+
+
+
+What to do:
+
+- We should have different codes for each client (Royal Can, Karwanchi, and Zain Group)
+
+- Each time a code is used for any of them, it should be reserved and be used again.
+
+- Zain Group has its own invoice template and Order form as well. (we will discuss it later)
+
+- I want to create another page called Codes. in this page there should be three tables. 
+One Table for the usable codes for a specific Client, another table for the used codes for a 
+specific Client along with their corresponding products, and another table for the codes that 
+have been used, but changed and can be used again. For example we have used R1642 for a Royal Can order,
+ but later we change the code to R1643. The old code should be availlable to use again and that is what 
+ we put in the second table in the Codes Page. On top of the page, there should be Two things. A search bar 
+ to search for a specific code or product and a dropdown menu to choose a client (either Royal Can, Karwanchi, or Zain Group) 
+ to see their used codes, available codes, and teh codes that are usable again.
+
+
+
+Do you fully understand? Do you have any questions before we begin? Do you know what to do?
+
+
+
+----controllers/clientController.js
+
+----controllers/dashboardController.js
+
+***controllers/invoicingController.js
+
+---controllers/reportingController.js
+
+---App.tsx
+
+components/MainLayout.tsx
+
+pages/Dashboard.tsx
+
+pages/Clients.tsx
+
+pages/OrdersSummaryPage.tsx
+
+pages/Invoicing.tsx
+
+pages/ClientDebtReportPage.tsx
+
+pages/ProfitAndLossPage.tsx

@@ -1,0 +1,704 @@
+/* frontend/src/App.css */
+html, body, #root {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  overflow-x: hidden; /* Prevents accidental horizontal scrollbars */
+}
+/* Define our color variables for Light and Dark modes */
+:root {
+  --sidebar-bg: #f8f9fa;
+  --sidebar-text-color: #6c757d;
+  --sidebar-header-color: #212529;
+  --sidebar-link-hover-bg: #e9ecef;
+  --sidebar-link-active-bg: #11AFBE;
+  --sidebar-link-active-text: #ffffff;
+  --main-content-bg: #eff0f1;
+  --main-text-color: #212529;
+  --card-bg: #ffffff;
+  --card-border-color: #e0e0e0;
+}
+
+body.dark-mode {
+  --sidebar-bg: #212529;
+  --sidebar-text-color: #adb5bd;
+  --sidebar-header-color: #ffffff;
+  --sidebar-link-hover-bg: #343a40;
+  --sidebar-link-active-bg: #11AFBE;
+  --sidebar-link-active-text: #ffffff;
+  --main-content-bg: #18191a;
+  --main-text-color: #e4e6eb;
+  --card-bg: #242526;
+  --card-border-color: #3a3b3c;
+}
+
+/* General App Layout */
+.app-container {
+  display: flex;
+  height: 100vh;
+  background-color: var(--main-content-bg);
+  color: var(--main-text-color);
+}
+
+.sidebar {
+  width: 240px;
+  background-color: var(--sidebar-bg);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-right: 1px solid var(--card-border-color);
+  transition: background-color 0.3s;
+}
+
+.sidebar-top {
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar-logo {
+  width: 220px;
+  margin: 0 auto 15px auto;
+}
+
+.sidebar-divider {
+  border: 0;
+  border-top: 1px solid var(--card-border-color);
+  margin-bottom: 20px;
+}
+
+.user-profile {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.user-profile .avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: #e9ecef;
+  margin: 0 auto 10px auto;
+}
+
+.user-profile .user-name {
+  font-weight: 600;
+  color: var(--sidebar-header-color);
+}
+
+.user-profile .user-handle {
+  font-size: 12px;
+  color: var(--sidebar-text-color);
+}
+
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 8px; /* Space between links */
+}
+
+.sidebar-nav a {
+  color: var(--sidebar-text-color);
+  text-decoration: none;
+  padding: 12px 15px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  gap: 12px; /* Space between icon and text */
+  transition: background-color 0.2s, color 0.2s;
+  font-weight: 500;
+}
+
+.sidebar-nav a:hover {
+  background-color: var(--sidebar-link-hover-bg);
+}
+
+.sidebar-nav a.active {
+  background-color: var(--sidebar-link-active-bg);
+  color: var(--sidebar-link-active-text);
+}
+
+.sidebar-bottom {
+  padding-top: 20px;
+  border-top: 1px solid var(--card-border-color);
+}
+
+.dark-mode-toggle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--sidebar-text-color);
+}
+
+/* Simple switch for dark mode */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 40px;
+  height: 20px;
+  margin-left: 30px;
+}
+.switch input { display: none; }
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: .4s;
+  border-radius: 20px;
+}
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 14px;
+  width: 14px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  transition: .4s;
+  border-radius: 50%;
+}
+input:checked + .slider { background-color: #11AFBE; }
+input:checked + .slider:before { transform: translateX(20px); }
+
+
+.main-content {
+  flex-grow: 1;
+  padding: 30px;
+  overflow-y: auto;
+}
+
+/* Add this to the end of frontend/src/App.css */
+
+.dashboard-grid {
+  display: grid;
+  /* This is the only line that needs to be changed */
+  grid-template-columns: repeat(4, 1fr); /* This ensures 4 equal columns */
+  gap: 24px;
+}
+
+.stat-card {
+  background-color: var(--card-bg);
+  border: 1px solid var(--card-border-color);
+  border-radius: 12px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+}
+
+.stat-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--sidebar-text-color);
+}
+
+.stat-card-icon {
+  font-size: 24px;
+}
+
+.stat-card-body {
+  margin-top: 16px;
+}
+
+.stat-card-value {
+  font-size: 2.25em;
+  font-weight: 600;
+  color: var(--main-text-color);
+  margin: 0;
+}
+
+.stat-card-change {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 14px;
+  margin-top: 8px;
+}
+
+.stat-card-change.positive {
+  color: #10b981;
+}
+
+.stat-card-change.negative {
+  color: #ef4444;
+}
+
+/* Add this to frontend/src/App.css */
+.dashboard-charts-grid {
+  margin-top: 24px;
+  display: grid;
+  grid-template-columns: 2fr 1fr; /* 2/3 width for bar chart, 1/3 for location map */
+  gap: 24px;
+}
+
+/* In frontend/src/App.css */
+
+/* New Styles for Clients Page Redesign */
+.clients-page {
+  padding: 10px;
+}
+
+.page-header {
+  margin-bottom: 24px;
+}
+
+.page-header h1 {
+  margin: 0;
+  font-size: 28px;
+  color: var(--main-text-color);
+}
+
+.page-header p {
+  margin-top: 4px;
+  color: var(--sidebar-text-color);
+}
+
+.action-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.search-bar {
+  position: relative;
+}
+
+.search-bar .search-icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--sidebar-text-color);
+}
+
+.search-bar input {
+  padding: 10px 10px 10px 40px; /* Make space for icon */
+  width: 300px;
+  border: 1px solid var(--card-border-color);
+  border-radius: 6px;
+  background-color: var(--card-bg);
+  color: var(--main-text-color);
+}
+
+.add-new-button {
+  padding: 10px 20px;
+  background-color: #8b5cf6;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.client-list-container {
+  background-color: var(--card-bg);
+  border: 1px solid var(--card-border-color);
+  border-radius: 8px;
+}
+
+.client-list-header, .client-row {
+  display: grid;
+  grid-template-columns: 100px 2fr 2fr 1.5fr 1fr 50px;
+  align-items: center;
+  padding: 12px 24px;
+}
+
+.client-list-header {
+  color: var(--sidebar-text-color);
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--card-border-color);
+}
+
+.client-row {
+  border-bottom: 1px solid var(--card-border-color);
+  color: var(--main-text-color);
+}
+
+.client-row:last-child {
+  border-bottom: none;
+}
+
+/* Styles for the new Actions Menu would go here if needed */
+
+/* In frontend/src/App.css */
+
+/* Styles for the Actions Menu */
+.actions-menu-container {
+  position: relative;
+  display: inline-block;
+}
+
+.actions-menu-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--sidebar-text-color);
+}
+
+.actions-menu-button:hover {
+  background-color: var(--sidebar-link-hover-bg);
+}
+
+.actions-menu-dropdown {
+  position: absolute;
+  right: 100%;
+  top: 0;
+  background-color: var(--card-bg);
+  border: 1px solid var(--card-border-color);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  width: 160px;
+  z-index: 10;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+}
+
+.actions-menu-dropdown button {
+  background: none;
+  border: none;
+  text-align: left;
+  padding: 10px 12px;
+  width: 100%;
+  cursor: pointer;
+  border-radius: 6px;
+  color: var(--main-text-color);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.actions-menu-dropdown button:hover {
+  background-color: var(--sidebar-link-hover-bg);
+}
+
+.actions-menu-dropdown button.delete-action:hover {
+  background-color: #ef4444;
+  color: white;
+}
+
+/* In frontend/src/App.css */
+
+/* New Styles for Add/Edit Modal */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  backdrop-filter: blur(2px);
+}
+
+.modal-content {
+  background: var(--card-bg);
+  padding: 0;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 650px; /* A bit wider for detailed forms */
+  box-shadow: 0 5px 25px rgba(0,0,0,0.3);
+  border: 1px solid var(--card-border-color);
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-header {
+  padding: 16px 24px;
+  border-bottom: 1px solid var(--card-border-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.modal-header h2 {
+  margin: 0;
+  font-size: 18px;
+  color: var(--main-text-color);
+}
+
+.close-button {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: var(--sidebar-text-color);
+}
+
+.modal-body {
+  padding: 24px;
+}
+
+.modal-content form {
+  padding: 24px;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px 24px;
+}
+
+.modal-footer {
+  padding: 16px 24px;
+  border-top: 1px solid var(--card-border-color);
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  background-color: var(--sidebar-bg);
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+}
+
+
+.button-secondary {
+  padding: 10px 20px;
+  border: 1px solid var(--card-border-color);
+  background-color: var(--card-bg);
+  color: var(--main-text-color);
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.button-primary {
+  padding: 10px 20px;
+  background-color: #8b5cf6;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.view-modal-grid {
+  display: grid;
+  grid-template-columns: 150px 1fr;
+  gap: 12px 16px;
+  font-size: 14px;
+}
+.view-modal-grid strong {
+  color: var(--sidebar-text-color);
+  font-weight: 500;
+}
+
+/* Add this to the end of frontend/src/App.css */
+
+/* --- Final Modal & Form Styling --- */
+
+.modal-body {
+  padding: 24px;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px 24px;
+}
+
+/* Styles for Input Fields, Labels, etc. */
+.input-group {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.input-group label {
+  display: block;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--sidebar-text-color);
+  margin-bottom: 8px;
+}
+
+.input-group input,
+.input-group select,
+.input-group textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--card-border-color);
+  border-radius: 6px;
+  background-color: var(--sidebar-bg); /* Use a slightly different bg for inputs */
+  color: var(--main-text-color);
+  font-size: 14px;
+  box-sizing: border-box;
+  transition: border-color 0.2s;
+}
+
+.input-group input:focus,
+.input-group select:focus,
+.input-group textarea:focus {
+  outline: none;
+  border-color: #8b5cf6; /* Highlight color */
+}
+
+/* Make modal buttons uniform */
+.modal-footer .button-secondary,
+.modal-footer .button-primary {
+  padding: 10px 20px;
+  font-size: 14px;
+}
+
+/* Specific styling for the read-only view modal */
+.view-modal-grid {
+  display: grid;
+  grid-template-columns: 150px 1fr;
+  gap: 12px 16px;
+  font-size: 14px;
+}
+
+.view-modal-grid strong {
+  color: var(--sidebar-text-color);
+  font-weight: 500;
+  text-align: right;
+}
+
+.view-modal-grid span {
+    color: var(--main-text-color);
+}
+
+/* In frontend/src/App.css */
+
+/* Styles for General Ledger Page */
+.journal-entry-card {
+  background-color: var(--card-bg);
+  border: 1px solid var(--card-border-color);
+  border-radius: 8px;
+  margin-bottom: 20px;
+  overflow: hidden;
+}
+
+.entry-header {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 16px;
+  background-color: var(--sidebar-bg);
+  font-weight: 500;
+  color: var(--sidebar-text-color);
+}
+
+.ledger-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.ledger-table th, .ledger-table td {
+  padding: 10px 16px;
+  text-align: left;
+  border-bottom: 1px solid var(--card-border-color);
+}
+
+.ledger-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* In frontend/src/App.css */
+
+.actions-menu-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.actions-menu-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 50%;
+  display: flex;
+  color: var(--sidebar-text-color);
+}
+
+.actions-menu-button:hover {
+  background-color: var(--sidebar-link-hover-bg);
+}
+
+.actions-menu-dropdown {
+  position: absolute;
+  right: 0;
+  top: 100%;
+  margin-top: 4px;
+  background-color: var(--card-bg);
+  border: 1px solid var(--card-border-color);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  width: 160px;
+  z-index: 10;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+}
+
+.actions-menu-dropdown button {
+  background: none;
+  border: none;
+  text-align: left;
+  padding: 10px 12px;
+  width: 100%;
+  cursor: pointer;
+  border-radius: 6px;
+  color: var(--main-text-color);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+}
+
+.actions-menu-dropdown button:hover {
+  background-color: var(--sidebar-link-hover-bg);
+}
+
+.actions-menu-dropdown button.delete-action:hover {
+  background-color: #ef4444;
+  color: white;
+}
+
+/* Add this to the end of frontend/src/App.css */
+
+.code-list-container {
+  /* This will be our scrollable container */
+  background-color: var(--card-bg);
+  border: 1px solid var(--card-border-color);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  
+  /* This is the magic: set a max height and enable scrolling */
+  max-height: 800px; /* This shows about 15 items. You can adjust this value. */
+  overflow-y: auto; /* Adds a scrollbar only when needed */
+}
+
+/* We also need to make sure the header stays put and doesn't scroll */
+.code-list-container .client-list-header {
+  position: sticky;
+  top: 0;
+  background-color: var(--card-bg);
+  z-index: 1;
+}
+
+/* In frontend/src/App.css */
+
+.stat-card h3 {
+  margin: 0 0 10px 0;
+  color: var(--sidebar-text-color);
+  font-size: 1em;
+  font-weight: 500;
+}

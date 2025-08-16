@@ -1,0 +1,42 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "start": "nodemon index.js",
+    "lint": "eslint .",
+    "format": "prettier --write ."
+  },
+  "jest": {
+    "testEnvironment": "node"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "bcryptjs": "^3.0.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "express-validator": "^7.2.1",
+    "jsonwebtoken": "^9.0.2",
+    "knex": "^3.1.0",
+    "pdfkit": "^0.17.1",
+    "pg": "^8.16.0",
+    "puppeteer": "^24.10.1",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.1"
+  },
+  "devDependencies": {
+    "@types/pdfkit": "^0.14.0",
+    "eslint": "^9.33.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.4",
+    "jest": "^30.0.5",
+    "nodemon": "^3.1.10",
+    "prettier": "^3.6.2",
+    "supertest": "^7.1.4"
+  }
+}
